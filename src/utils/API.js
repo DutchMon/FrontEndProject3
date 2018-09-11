@@ -19,6 +19,6 @@ export default {
     },
 
     saveArticle: (data) => {
-        return axios.post("/saved", data);
+        return axios.post("https://student-hub-heroku.herokuapp.com/saved", data);
     }
 }
