@@ -1,31 +1,30 @@
 import React, { Component } from "react";
-import { Redirect, Link } from "react-router-dom";
-
-//google button images linked here
-// import googleButton from "./google_signin_buttons/web/1x/btn_google_signin_dark_normal_web.png";
+import { Redirect } from "react-router-dom";
+import {Button, Form, FormGroup, Label, Input, Container} from "reactstrap";
 
 class loginForm extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       username: "",
       password: "",
       redirectTo: null
     };
 
+    // this.googleSignin = this.googleSignin.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
 
-  //capturing state of inputs on change
-  handleChange = event => {
-    let { name, value } = event.target;
-    this.setState({ [name]: value });
-  };
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
 
   handleSubmit(event) {
     event.preventDefault();
-    this.props.login(this.state.username, this.state.password);
+    this.props._login(this.state.username, this.state.password);
     this.setState({
       redirectTo: "/"
     });
@@ -36,32 +35,42 @@ class loginForm extends Component {
       return <Redirect to={{ pathname: this.state.redirectTo }} />;
     } else {
       return (
-        <div className="LoginForm">
+        <Container>
+        <Form className="LoginForm">
           <h1>Login form</h1>
-          <form>
-            <label htmlFor="username">Username: </label>
-            <input
+          <FormGroup>
+            <Label for="username">Username: </Label>
+            <Input
               type="text"
               name="username"
               value={this.state.username}
               onChange={this.handleChange}
             />
-            <label htmlFor="password">Password: </label>
-            <input
+            </FormGroup>
+            <FormGroup>
+            <Label for="password">Password: </Label>
+            <Input
               type="password"
               name="password"
               value={this.state.password}
               onChange={this.handleChange}
             />
-            <button onClick={this.handleSubmit}>Login</button>
-            <Link to="/signup">
-              <button>Sign Up</button>
-            </Link>
-          </form>
-        </div>
+            </FormGroup>
+            <FormGroup>
+            <Button onClick={this.handleSubmit}>Login</Button>
+          </FormGroup>
+        </Form>
+        </Container>
       );
     }
   }
 }
 
 export default loginForm;
+
+
+
+Collapse 
+Message Input
+
+Message anuhya, Greg, Kevin
