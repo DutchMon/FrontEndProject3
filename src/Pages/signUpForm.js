@@ -24,7 +24,7 @@ class signUpForm extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    axios.post("https://git.heroku.com/student-hub-heroku.git/https://cors-anywhere.herokuapp.com/auth/signup", {
+    axios.post("https://cors-anywhere.herokuapp.com/https://student-hub-heroku.herokuapp.com/auth/signup", {
         username: this.state.username,
         password: this.state.password
       })

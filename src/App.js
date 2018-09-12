@@ -45,7 +45,7 @@ class App extends Component {
   _logout(event) {
     event.preventDefault();
     console.log("Logging you out");
-    axios.post("https://cors-anywhere.herokuapp.com/https://git.heroku.com/student-hub-heroku.git/auth/logout").then(response => {
+    axios.post("https://cors-anywhere.herokuapp.com/https://student-hub-heroku.herokuapp.com/auth/logout").then(response => {
       console.log(response.data);
       if (response.status === 200) {
         this.setState({
@@ -58,7 +58,7 @@ class App extends Component {
 
   _login(username, password) {
     console.log("i'm here");
-    axios.post("https://cors-anywhere.herokuapp.com/https://git.heroku.com/student-hub-heroku.git/auth/login", { username, password }).then(response => {
+    axios.post("https://cors-anywhere.herokuapp.com/https://student-hub-heroku.herokuapp.com/auth/login", { username, password }).then(response => {
       console.log("after post");
       console.log(response.data);
       if (response.status === 200) {
