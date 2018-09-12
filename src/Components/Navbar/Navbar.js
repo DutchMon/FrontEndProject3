@@ -8,7 +8,7 @@ const Navbar = props => {
   if (props.loggedIn) {
     Greeting = (
       <p>
-        Welcome back, <strong>{props.user[0].username}</strong>
+        Welcome back, <strong>{props.user}</strong>
       </p>
     );
 
