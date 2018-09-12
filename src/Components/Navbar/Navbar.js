@@ -1,45 +1,67 @@
-import React from "react";
+import React, { Component } from "react";
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+} from "reactstrap";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 // Depending on the current path, this component sets the "active" class on the appropriate navigation link item
-const Navbar = props => {
-  let Greeting;
-  if (props.loggedIn) {
-    Greeting = (
-      <p>
-        Welcome back, <strong>{props.user}</strong>
-      </p>
-    );
+class Header extends Component {
+  constructor(props) {
+    console.log(props);
+    super(props);
 
+    this.toggle = this.toggle.bind(this);
+    this.state = {
+      isOpen: false
+    };
+  }
+  toggle() {
+    this.setState({
+      isOpen: !this.state.isOpen
+    });
+  }
+
+  render() {
+    let Greeting;
+    let Login;
+    if (this.props.loggedIn === true) {
+      Greeting = (
+        <p>
+          Welcome back, <strong>{this.props.user}</strong>
+        </p>
+      );
+      Login = <button className="btn btn-secondary">Log Out</button>;
+    } else {
+      Greeting = <p className="greeting">Welcome Guest!</p>;
+      Login = <button className="btn btn-secondary">Log In</button>;
+    }
     return (
-      <nav>
-        <h1 className="text-center">
-          <Link to="/home">#StudentHub</Link>
-          <span className="float-right">
-            <Link to="/#" onClick={props._logout}>
-              <button className="btn btn-danger">Log Out</button>
+      <div>
+        <Navbar color="dark" dark expand="md">
+          <NavbarBrand>
+            <Link to="/home">
+              <img className="headerImage" src="/stillStudentHUB.png" alt="#studentHUB" />
             </Link>
-          </span>
-          <span className="float-right mr-3">{Greeting}</span>
-        </h1>
-      </nav>
-    );
-  } else {
-    Greeting = <p>Hello Guest!</p>;
-    return (
-      <nav>
-        <h1 className="text-center">
-          <Link to="/home">#StudentHub</Link>
-          <span className="float-right">
-            <Link to="/login">
-              <button className="btn btn-danger">Log In</button>
-            </Link>
-          </span>
-          <span className="float-right mr-3">{Greeting}</span>
-        </h1>
-      </nav>
+          </NavbarBrand>
+          <NavbarToggler onClick={this.toggle} />
+          <Collapse isOpen={this.state.isOpen} navbar>
+            <Nav className="ml-auto" navbar>
+              <NavItem>{Greeting}</NavItem>
+              <NavItem>
+                <Link to="/login">{Login}</Link>
+              </NavItem>
+            </Nav>
+          </Collapse>
+        </Navbar>
+      </div>
     );
   }
-};
-export default Navbar;
+}
+
+export default Header;

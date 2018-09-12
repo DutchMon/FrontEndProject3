@@ -37,7 +37,7 @@ class loginForm extends Component {
       return (
         <Container>
         <Form className="LoginForm">
-          <h1>Login form</h1>
+          <h1 className="LoginTitle" >Login form</h1>
           <FormGroup>
             <Label for="username">Username: </Label>
             <Input

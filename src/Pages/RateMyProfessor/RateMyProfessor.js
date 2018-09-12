@@ -4,6 +4,7 @@ import { Jumbotron, Input, FormGroup, Label } from "reactstrap";
 import { H1, H3, H4 } from "../../Components/Form/RMPheadings";
 import { Container, Row, Col } from "reactstrap";
 import { Panel, PanelHeading, PanelBody } from "../../Components/Form/RMPpanel";
+import "./style.css";
 
 class RateMyProfessor extends Component {
   state = {
@@ -42,9 +43,9 @@ class RateMyProfessor extends Component {
 
   render() {
     return (
-      <Container fluid>
-        <Row>
-          <Col size="sm-10" offset="sm-1">
+      <Container>
+        <Row noGutters={true} className="rmpRow">
+          <Col className="elevenpercentmargin" md={{ size: 9 }} sm={{ size: 12}}>
             <Jumbotron>
               <H1 className="page-header text-center">
                 Rate My Professor Search

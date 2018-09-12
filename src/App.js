@@ -8,7 +8,7 @@ import NavBar from "./Components/Navbar";
 import Login from "./Pages/Login/loginForm";
 import SignupForm from "./Pages/signUpForm";
 import Home from "./Pages/Home";
-import Internships from "./Pages/Internships";
+import Internships from "./Pages/Internships/Internships";
 import RateMyProfessor from "./Pages/RateMyProfessor/RateMyProfessor";
 import SchedulerContainer from "./Pages/SchedulerContainer/SchedulerContainer";
 

@@ -5,3 +5,13 @@ nav {
   height: 15%;
   vertical-align: center;
 }
+
+.greeting {
+  padding: 10px;
+  margin: 0% !important;
+}
+
+.headerImage {
+  height: auto;
+  width: 300px;
+}

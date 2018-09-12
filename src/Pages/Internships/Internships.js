@@ -1,9 +1,10 @@
 import React from 'react';
-import { Jumbotron, Button, Form, FormGroup, Label, Input, Table, Modal, ModalHeader, ModalFooter, Alert } from 'reactstrap';
-import API from "../utils/API.js";
+import { Jumbotron, Button, Form, FormGroup, Label, Input, Table, Modal, ModalHeader, ModalFooter, Alert, Container } from 'reactstrap';
+import "./style.css";
+import API from "../../utils/API.js";
 import Moment from 'react-moment';
-import Container from '../Components/Container/index.js';
-var cities = require("../utils/cities.json");
+var cities = require("../../utils/cities.json");
+
 
 function getCountry() {
   let countries = Object.keys(cities);
@@ -221,7 +222,9 @@ export default class Example extends React.Component {
       
         <h3>Saved Jobs</h3>
         {this.state.saved.length ? 
-        (<Table className="ml-2 mr-2">
+        (
+          <Container className="jobsTable">
+        <Table className="ml-2 mr-2">
           <thead>
             <tr>
               <th>Title</th>
@@ -244,6 +247,7 @@ export default class Example extends React.Component {
             }
           </tbody>
         </Table>
+        </Container>
           ): <Alert>No saved jobs</Alert>
         }
         
@@ -252,6 +256,7 @@ export default class Example extends React.Component {
         <h3>Search Results</h3>
         {this.state.searchResults.length? 
         (
+        <Container className="jobsTable">
         <Table className="ml-2 mr-2">
           <thead>
             <tr>
@@ -268,6 +273,7 @@ export default class Example extends React.Component {
             }
           </tbody>
         </Table>
+        </Container>
         ) : <Alert>No results to display</Alert>
         }
         

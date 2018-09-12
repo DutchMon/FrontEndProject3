@@ -6,10 +6,10 @@ const Home = props => {
     return (
       <div className="Home">
         <div className="jumbotron text-center">
-          <h3>
+          <h2>
             Welcome <code>{JSON.stringify(props)}</code>! Have a Successful day
             everyday!
-          </h3>
+          </h2>
         </div>
         <Container />
       </div>
@@ -18,7 +18,7 @@ const Home = props => {
     return (
       <div className="Home">
         <div className="jumbotron text-center">
-          <h3>Welcome! Have a Successful day everyday!</h3>
+          <h2>Welcome! Have a Successful day everyday!</h2>
         </div>
         <Container />
       </div>

@@ -6,7 +6,7 @@ const Container = () => {
   return (
     <div className="container">
       <div className="row text-center">
-        <div className="col-lg-4">
+        <div className="col-lg-4 homeImage">
           <Link to="/rmp" title="Rate My Professor" alt="Rate My Professor">
             <img
               src={
@@ -16,9 +16,9 @@ const Container = () => {
               alt={"Rate my Professor"}
             /><br/>
             <h7>Rate My Professor</h7>
-          </a>
+          </Link>
         </div>
-        <div className="col-lg-4">
+        <div className="col-lg-4 homeImage">
           <Link
             to="/schedule"
             title="Scheduler"
@@ -32,9 +32,9 @@ const Container = () => {
               alt={"Scheduler"}
             /><br/>
             <h7>Scheduler</h7>
-          </a>
+          </Link>
         </div>
-        <div className="col-lg-4">
+        <div className="col-lg-4 homeImage">
           <Link
             to="/internships"
             title="Student internships and full-time jobs"
@@ -48,7 +48,7 @@ const Container = () => {
               alt={"Internships"}
             /><br/>
             <h7>Job Search</h7>
-          </a>
+          </Link>
         </div>
       </div>
     </div>
