@@ -1,18 +1,17 @@
 import React from 'react';
-import { Jumbotron, Button, Form, FormGroup, Label, Input, Table, Modal, ModalHeader, ModalFooter, Alert, Container } from 'reactstrap';
-import "./style.css";
-import API from "../../utils/API.js";
+import { Jumbotron, Button, Form, FormGroup, Label, Input, Table, Modal, ModalHeader, ModalFooter, Alert } from 'reactstrap';
+import API from "../utils/API.js";
 import Moment from 'react-moment';
-var cities = require("../../utils/cities.json");
-
+var cities = require("../utils/cities.json");
 
 function getCountry() {
   let countries = Object.keys(cities);
   return countries;
 }
 const places = getCountry();
+places.unshift("...");
 function getOtherOptions() {
-  let options = places.map((country, index) => <option key={index} data={country}>{country}</option>)
+  let options = places.map((country, index) => <option key={index} data={country}>{country}</option>);
   return options;
 }
 
@@ -39,7 +38,8 @@ export default class Example extends React.Component {
       searchResults: [],
       modal: false,
       saved: [],
-      id: 0
+      id: 0,
+      removeid: 0
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -132,8 +132,9 @@ export default class Example extends React.Component {
       .catch(err => console.log(err));
   }
 
-  save = () => {
-    console.log(this.state.key);
+  save = e => {
+    console.log(e.target.value);
+    console.log(this.state.searchResults.length);
     API.saveArticle({
     link: (this.state.searchResults[this.state.id].apply_url) ? this.state.searchResults[this.state.id].apply_url : this.state.searchResults[this.state.id].redirect_url,
     title: (this.state.searchResults[this.state.id].title) ? this.state.searchResults[this.state.id].title.replace(/<strong>|<\/strong>/gi, "") : this.state.searchResults[this.state.id].category.label,
@@ -169,7 +170,7 @@ export default class Example extends React.Component {
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
               <ModalHeader toggle={this.toggle}>Would you like to apply for this job later?</ModalHeader>
               <ModalFooter>
-                  <Button id={index} name="id" color="primary" onClick={this.save}>Save Job</Button>
+                  <Button type="text" value={index} name="id" color="primary" onClick={this.save}>Save Job</Button>
                   <Button color="secondary" onClick={this.toggle}>Cancel</Button>
               </ModalFooter>
               </Modal>
@@ -178,10 +179,16 @@ export default class Example extends React.Component {
     )
   }
 
-  remove = id => {
+  remove = (e) => {
+    console.log(e.target.value);
     this.setState({
-      searchResults: this.searchResults.filter(x => x.id!=id)
-    })
+      saved: this.state.saved.filter(x => x._id !== e.target.value),
+      removeid: 0
+    });
+    API.deleteArticle(e.target.value)
+    .then(res => console.log(res))
+    .catch(err => console.log(err));
+    console.log(this.state);
   }
 
   render() {
@@ -198,6 +205,7 @@ export default class Example extends React.Component {
             <FormGroup className="mb-2 mr-sm-2 mb-sm-0">
               <Label for="jobType" className="mr-sm-2">Job Type</Label>
               <Input type="select" name="jobType" id="jobType" value={this.state.jobType} onChange={this.handleInputChange}>
+                <option>...</option>
                 <option>Part-time / Internship</option>
                 <option>Full-time</option>
               </Input>
@@ -222,9 +230,7 @@ export default class Example extends React.Component {
       
         <h3>Saved Jobs</h3>
         {this.state.saved.length ? 
-        (
-          <Container className="jobsTable">
-        <Table className="ml-2 mr-2 textColor">
+        (<Table className="ml-2 mr-2 textColor">
           <thead>
             <tr>
               <th>Title</th>
@@ -241,13 +247,12 @@ export default class Example extends React.Component {
               <td>{elem.title}</td>
               <td><a href={elem.link} alt="Job link">{elem.link}</a></td>
               <td><Moment format="YYYY/MM/DD" date={elem.date} /></td>
-              <td><Button onClick={this.remove}>Remove</Button></td>
+              <td><Button type="text" name="removeid" value={elem._id} onClick={this.remove}>Remove</Button></td>
               </tr>
               ) 
             }
           </tbody>
         </Table>
-        </Container>
           ): <Alert>No saved jobs</Alert>
         }
         
@@ -256,7 +261,6 @@ export default class Example extends React.Component {
         <h3>Search Results</h3>
         {this.state.searchResults.length? 
         (
-        <Container className="jobsTable">
         <Table className="ml-2 mr-2 textColor">
           <thead>
             <tr>
@@ -273,7 +277,6 @@ export default class Example extends React.Component {
             }
           </tbody>
         </Table>
-        </Container>
         ) : <Alert>No results to display</Alert>
         }
         

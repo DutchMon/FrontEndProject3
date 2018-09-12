@@ -20,22 +20,6 @@ const Container = () => {
         </div>
         <div className="col-lg-4 homeImage">
           <Link
-            to="/schedule"
-            title="Scheduler"
-            alt="Scheduler"
-          >
-            <img
-              src={
-                // "https://sundayskills.com/wp-content/uploads/2018/03/cover-image.jpg"
-                "/calendar.gif"
-              }
-              alt={"Scheduler"}
-            /><br/>
-            <h7>Scheduler</h7>
-          </Link>
-        </div>
-        <div className="col-lg-4 homeImage">
-          <Link
             to="/internships"
             title="Student internships and full-time jobs"
             alt="Student internships and full-time jobs"
@@ -48,6 +32,22 @@ const Container = () => {
               alt={"Internships"}
             /><br/>
             <h7>Job Search</h7>
+          </Link>
+        </div>
+        <div className="col-lg-4 homeImage">
+          <Link
+            to="/schedule"
+            title="Scheduler"
+            alt="Scheduler"
+          >
+            <img
+              src={
+                // "https://sundayskills.com/wp-content/uploads/2018/03/cover-image.jpg"
+                "/calendar.gif"
+              }
+              alt={"Scheduler"}
+            /><br/>
+            <h7>Scheduler</h7>
           </Link>
         </div>
       </div>

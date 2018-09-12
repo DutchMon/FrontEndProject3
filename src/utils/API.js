@@ -8,8 +8,12 @@ export default {
     return axios.post("/savedJobs", data);
   },
 
-  getArticles: data => {
-    return axios.get("/savedJobs", data);
+  getArticles: () => {
+    return axios.get("/savedJobs");
+  },
+
+  deleteArticle: id => {
+    return axios.get("/savedJobs/" + id);
   },
 
   //job, type, country, city category, type, location, keywords
