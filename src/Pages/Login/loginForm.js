@@ -27,7 +27,7 @@ class loginForm extends Component {
     event.preventDefault();
     this.props.login(this.state.username, this.state.password);
     this.setState({
-      redirectTo: "/schedule"
+      redirectTo: "/"
     });
   }
 
