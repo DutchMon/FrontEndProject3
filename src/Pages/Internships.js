@@ -43,21 +43,21 @@ export default class Example extends React.Component {
     this.getJobCategories = this.getJobCategories.bind(this);
   }
 
-  componentDidMount = () => {
-    this.getJobCategories();
-    let adzunaCategories = [];
-    API.getAdzunaJobCategories()
-      .then(res => {
-        res.data.results.forEach((elem) => {
-          adzunaCategories.push(elem.label);
-        });
-        this.setState({
-          categories: this.state.categories.concat(adzunaCategories)
-        })
-      }
-      )
-      .catch(err => console.log(err));
-  }
+  // componentDidMount = () => {
+  //   this.getJobCategories();
+  //   let adzunaCategories = [];
+  //   API.getAdzunaJobCategories()
+  //     .then(res => {
+  //       res.data.results.forEach((elem) => {
+  //         adzunaCategories.push(elem.label);
+  //       });
+  //       this.setState({
+  //         categories: this.state.categories.concat(adzunaCategories)
+  //       })
+  //     }
+  //     )
+  //     .catch(err => console.log(err));
+  // }
 
   handleInputChange = e => {
     const { name, value } = e.target;
