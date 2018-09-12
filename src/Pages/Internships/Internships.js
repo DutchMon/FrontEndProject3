@@ -1,5 +1,6 @@
 import React from 'react';
 import { Jumbotron, Button, Form, FormGroup, Label, Input, Table, Modal, ModalHeader, ModalFooter, Alert } from 'reactstrap';
+import "./style.css";
 import API from "../../utils/API.js";
 import Moment from 'react-moment';
 var cities = require("../../utils/cities.json");

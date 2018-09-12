@@ -61,7 +61,7 @@ class RateMyProfessor extends Component {
               <PanelBody>
                 <RMPform style={{ marginBottom: "30px" }}>
                   <FormGroup>
-                    <Label htmlFor="firstName">
+                    <Label htmlFor="firstName textColor">
                       Enter your Professor's first name
                     </Label>
                     <Input
@@ -72,7 +72,7 @@ class RateMyProfessor extends Component {
                     />
                   </FormGroup>
                   <FormGroup>
-                    <Label htmlFor="lastName">
+                    <Label htmlFor="lastName textColor">
                       Enter your Professor's last name
                     </Label>
                     <Input
@@ -83,7 +83,9 @@ class RateMyProfessor extends Component {
                     />
                   </FormGroup>
                   <FormGroup>
-                    <Label htmlFor="university">Enter your University</Label>
+                    <Label htmlFor="university textColor">
+                    Enter your University
+                    </Label>
                     <Input
                       onChange={this.handleInputChange}
                       name="university"
