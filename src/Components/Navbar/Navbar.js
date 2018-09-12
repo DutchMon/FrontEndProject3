@@ -46,7 +46,7 @@ class Header extends Component {
         <Navbar color="dark" dark expand="md">
           <NavbarBrand>
             <Link to="/home">
-              <img className="headerImage" src="/stillStudentHUB.png" alt="#studentHUB" />
+              <img className="headerImage" src="/studenthubhead.gif" alt="#studentHUB" />
             </Link>
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
