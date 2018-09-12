@@ -1,8 +1,8 @@
 import React from 'react';
 import { Jumbotron, Button, Form, FormGroup, Label, Input, Table, Modal, ModalHeader, ModalFooter, Alert } from 'reactstrap';
-import API from "../utils/API.js";
+import API from "../../utils/API.js";
 import Moment from 'react-moment';
-var cities = require("../utils/cities.json");
+var cities = require("../../utils/cities.json");
 
 function getCountry() {
   let countries = Object.keys(cities);
