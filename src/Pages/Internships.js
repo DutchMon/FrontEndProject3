@@ -1,7 +1,8 @@
 import React from 'react';
-import { Jumbotron, Button, Form, FormGroup, Label, Input, Table } from 'reactstrap';
+import { Jumbotron, Button, Form, FormGroup, Label, Input, Table, Modal, ModalHeader, ModalFooter, Alert } from 'reactstrap';
 import API from "../utils/API.js";
 import Moment from 'react-moment';
+import Container from '../Components/Container/index.js';
 var cities = require("../utils/cities.json");
 
 function getCountry() {
@@ -35,29 +36,35 @@ export default class Example extends React.Component {
       country: "",
       city: "",
       searchResults: [],
-      source: ""
+      modal: false,
+      saved: [],
+      id: 0
     }
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.getJobs = this.getJobs.bind(this);
     this.getJobCategories = this.getJobCategories.bind(this);
+    this.toggle = this.toggle.bind(this);
+    this.save = this.save.bind(this);
+    this.remove = this.remove.bind(this);
   }
 
-  // componentDidMount = () => {
-  //   this.getJobCategories();
-  //   let adzunaCategories = [];
-  //   API.getAdzunaJobCategories()
-  //     .then(res => {
-  //       res.data.results.forEach((elem) => {
-  //         adzunaCategories.push(elem.label);
-  //       });
-  //       this.setState({
-  //         categories: this.state.categories.concat(adzunaCategories)
-  //       })
-  //     }
-  //     )
-  //     .catch(err => console.log(err));
-  // }
+  componentDidMount = () => {
+    this.getSavedJobs();
+    this.getJobCategories();
+    let adzunaCategories = [];
+    API.getAdzunaJobCategories()
+      .then(res => {
+        res.data.results.forEach((elem) => {
+          adzunaCategories.push(elem.label);
+        });
+        this.setState({
+          categories: this.state.categories.concat(adzunaCategories)
+        })
+      }
+      )
+      .catch(err => console.log(err));
+  }
 
   handleInputChange = e => {
     const { name, value } = e.target;
@@ -74,10 +81,14 @@ export default class Example extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    this.clearResults()
+    this.clearResults();
+    this.getSavedJobs();
     this.getJobs();
     API.getAdzunaJobs(this.state.job, this.state.country, this.state.city)
-      .then(res => console.log(res.data.results))
+      .then(res => {
+        this.setState({searchResults: this.state.searchResults.concat(res.data.results)});
+        // console.log(this.state.searchResults);
+      })
       .catch(err => console.log(err));
   }
 
@@ -86,17 +97,23 @@ export default class Example extends React.Component {
     if (this.state.job === "IT Jobs") {
       API.getJobsAuthenticJobs()
         .then(res => {
+          // console.log(res.data.listings.listing)
           this.setState({ searchResults: this.state.searchResults.concat(res.data.listings.listing) });
+          console.log(res.data.listings.listing)
         })
         .catch(err => console.log(err));
     }
     API.getAdzunaJobs(this.state.job, this.state.country, this.state.city)
-      .then(res =>
+      .then(res =>{
         this.setState({
           searchResults: this.state.searchResults.concat(res.data.results)
         }
-        ));
-    console.log(this.state.searchResults);
+        );
+        console.log(res);
+      }
+      )
+        .catch(err => console.log(err));
+    // console.log(this.state.searchResults);
   }
 
   getJobCategories = () => {
@@ -115,21 +132,55 @@ export default class Example extends React.Component {
   }
 
   save = () => {
-    API.saveArticle()
-      .then(res => console(res))
+    console.log(this.state.key);
+    API.saveArticle({
+    link: (this.state.searchResults[this.state.id].apply_url) ? this.state.searchResults[this.state.id].apply_url : this.state.searchResults[this.state.id].redirect_url,
+    title: (this.state.searchResults[this.state.id].title) ? this.state.searchResults[this.state.id].title.replace(/<strong>|<\/strong>/gi, "") : this.state.searchResults[this.state.id].category.label,
+    date: (this.state.searchResults[this.state.id].created) ? this.state.searchResults[this.state.id].created : this.state.searchResults[this.state.id].post_date
+    })
+      .then(res => console.log(res))
       .catch(err => console.log(err));
+    this.setState({
+      modal: false
+    })
+  }
+
+  getSavedJobs = () => {
+    API.getArticles()
+    .then(res => this.setState({saved: res.data}))
+    .catch(err => console.log(err));
+  }
+
+  toggle() {
+    this.setState({
+      modal: !this.state.modal,
+    });
   }
 
   getRows = () => {
     return this.state.searchResults.map((item, index) =>
-      <tr id={index}>
+      <tr key={item.adref ? item.adref : item.id} id={item.adref ? item.adref : item.id}>
         <td>{index + 1}</td>
         <td>{(item.title) ? item.title.replace(/<strong>|<\/strong>/gi, "") : item.category.label}</td>
         <td><a href={(item.apply_url) ? item.apply_url : item.redirect_url} target="_blank">{(item.apply_url) ? item.apply_url : item.redirect_url}</a></td>
         <td><Moment format="YYYY/MM/DD" date={(item.post_date) ? item.post_date : item.company.created} /></td>
-        <td><Button className="btn btn-danger" onClick={this.save}>Save this</Button></td>
+        <td><Button className="btn btn-danger" onClick={this.toggle}>Save this</Button>
+        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+              <ModalHeader toggle={this.toggle}>Would you like to apply for this job later?</ModalHeader>
+              <ModalFooter>
+                  <Button id={index} name="id" color="primary" onClick={this.save}>Save Job</Button>
+                  <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+              </ModalFooter>
+              </Modal>
+        </td>
       </tr>
     )
+  }
+
+  remove = id => {
+    this.setState({
+      searchResults: this.searchResults.filter(x => x.id!=id)
+    })
   }
 
   render() {
@@ -166,7 +217,41 @@ export default class Example extends React.Component {
           </Form>
         </Jumbotron>
         <br />
-        {/* <Container> */}
+        
+      
+        <h3>Saved Jobs</h3>
+        {this.state.saved.length ? 
+        (<Table className="ml-2 mr-2">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Application Link</th>
+              <th>Post Date</th>
+              <th>Remove Job</th>
+            </tr>
+          </thead>
+          <tbody>
+        
+            {
+              this.state.saved.map((elem) => 
+              <tr key={elem._id} id={elem._id}>
+              <td>{elem.title}</td>
+              <td><a href={elem.link} alt="Job link">{elem.link}</a></td>
+              <td><Moment format="YYYY/MM/DD" date={elem.date} /></td>
+              <td><Button onClick={this.remove}>Remove</Button></td>
+              </tr>
+              ) 
+            }
+          </tbody>
+        </Table>
+          ): <Alert>No saved jobs</Alert>
+        }
+        
+        <br/><br/>
+
+        <h3>Search Results</h3>
+        {this.state.searchResults.length? 
+        (
         <Table className="ml-2 mr-2">
           <thead>
             <tr>
@@ -178,12 +263,14 @@ export default class Example extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {(this.state.searchResults) ?
-              this.getRows() : "No results"
+            {
+              this.getRows()
             }
           </tbody>
         </Table>
-        {/* </Container> */}
+        ) : <Alert>No results to display</Alert>
+        }
+        
       </div>
     );
   }
