@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Container.css";
 
 const Container = () => {
@@ -6,7 +7,7 @@ const Container = () => {
     <div className="container">
       <div className="row text-center">
         <div className="col-lg-4">
-          <a href="/rmp" title="Rate My Professor" alt="Rate My Professor">
+          <Link to="/rmp" title="Rate My Professor" alt="Rate My Professor">
             <img
               src={
                 //"https://bloximages.newyork1.vip.townnews.com/laloyolan.com/content/tncms/assets/v3/editorial/2/a2/2a274d71-8277-5bd1-be25-c65cdb710e42/5ac80d20dfc1e.image.jpg?resize=1200%2C600"
@@ -18,8 +19,8 @@ const Container = () => {
           </a>
         </div>
         <div className="col-lg-4">
-          <a
-            href="/schedule"
+          <Link
+            to="/schedule"
             title="Scheduler"
             alt="Scheduler"
           >
@@ -34,8 +35,8 @@ const Container = () => {
           </a>
         </div>
         <div className="col-lg-4">
-          <a
-            href="/internships"
+          <Link
+            to="/internships"
             title="Student internships and full-time jobs"
             alt="Student internships and full-time jobs"
           >
