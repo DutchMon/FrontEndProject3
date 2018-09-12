@@ -40,7 +40,7 @@ class loginForm extends Component {
         <Form className="LoginForm">
           <h1 className="LoginTitle" >Login form</h1>
           <FormGroup>
-            <Label for="username">Username: </Label>
+            <Label for="username" className="textColor">Username: </Label>
             <Input
               type="text"
               name="username"
@@ -49,7 +49,7 @@ class loginForm extends Component {
             />
             </FormGroup>
             <FormGroup>
-            <Label for="password">Password: </Label>
+            <Label for="password" className="textColor">Password: </Label>
             <Input
               type="password"
               name="password"
