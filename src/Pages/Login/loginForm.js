@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-import {Button, Form, FormGroup, Label, Input, Container, Link} from "reactstrap";
+import {Button, Form, FormGroup, Label, Input, Container} from "reactstrap";
+import {Link} from "react-router-dom";
 import "./style.css";
 class loginForm extends Component {
   constructor() {
@@ -29,13 +30,7 @@ class loginForm extends Component {
       redirectTo: "/"
     });
   }
-  handleSubmit2(event) {
-    event.preventDefault();
-    this.setState({
-      redirectTo: "/signup"
-    });
-  }
-
+  
   render() {
     if (this.state.redirectTo) {
       return <Redirect to={{ pathname: this.state.redirectTo }} />;
