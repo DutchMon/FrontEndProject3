@@ -23,24 +23,24 @@ class App extends Component {
     this._login = this._login.bind(this);
   }
   
-  componentDidMount() {
-    axios.get("/auth/user").then(response => {
-      console.log(response);
-      if (response.data.user) {
-        console.log("There is a user! YAY!");
-        this.setState({
-          loggedIn: true,
-          user: response.data.user
-        });
-      } else {
-        console.log("There is no user");
-        this.setState({
-          loggedIn: false,
-          user: null
-        });
-      }
-    });
-  }
+  // componentDidMount() {
+  //   axios.get("/auth/user").then(response => {
+  //     console.log(response);
+  //     if (response.data.user) {
+  //       console.log("There is a user! YAY!");
+  //       this.setState({
+  //         loggedIn: true,
+  //         user: response.data.user
+  //       });
+  //     } else {
+  //       console.log("There is no user");
+  //       this.setState({
+  //         loggedIn: false,
+  //         user: null
+  //       });
+  //     }
+  //   });
+  // }
 
   _logout(event) {
     event.preventDefault();
