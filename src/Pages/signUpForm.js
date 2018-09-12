@@ -72,12 +72,12 @@ class signUpForm extends Component {
           </FormGroup>
           <FormGroup>
             <Button onClick={this.handleSubmit}>Sign Up</Button>
-            <FormGroup>
+          </FormGroup>
+          <FormGroup>
             <Link to="/signup">
               <Button>Login</Button>
             </Link>
             </FormGroup>
-          </FormGroup>
         </Form>
       </Container>
     );
