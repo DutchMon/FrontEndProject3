@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 //google button images linked here
 // import googleButton from "./google_signin_buttons/web/1x/btn_google_signin_dark_normal_web.png";
