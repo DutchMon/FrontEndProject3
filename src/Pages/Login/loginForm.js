@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import {Button, Form, FormGroup, Label, Input, Container} from "reactstrap";
-
+import "./style.css";
 class loginForm extends Component {
   constructor() {
     super();
