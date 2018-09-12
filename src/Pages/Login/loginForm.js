@@ -30,7 +30,7 @@ class loginForm extends Component {
       redirectTo: "/"
     });
   }
-  
+
   render() {
     if (this.state.redirectTo) {
       return <Redirect to={{ pathname: this.state.redirectTo }} />;
@@ -59,6 +59,7 @@ class loginForm extends Component {
             </FormGroup>
             <FormGroup>
             <Button onClick={this.handleSubmit}>Login</Button>
+            <br></br>
             <Link to="/signup">
               <Button>Sign Up</Button>
             </Link>

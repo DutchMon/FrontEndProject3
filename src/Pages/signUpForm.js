@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 import {Button, Form, FormGroup, Label, Input, Container} from "reactstrap";
+import {Link} from "react-router-dom";
 
 
 class signUpForm extends Component {
@@ -71,6 +72,9 @@ class signUpForm extends Component {
           </FormGroup>
           <FormGroup>
             <Button onClick={this.handleSubmit}>Sign Up</Button>
+            <Link to="/signup">
+              <Button>Login</Button>
+            </Link>
           </FormGroup>
         </Form>
       </Container>
