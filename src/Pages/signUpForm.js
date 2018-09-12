@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
+import {Button, Form, FormGroup, Label, Input, Container} from "reactstrap";
+
 
 class signUpForm extends Component {
   constructor() {
@@ -46,31 +48,32 @@ class signUpForm extends Component {
       return <Redirect to={{ pathname: this.state.redirectTo }} />;
     }
     return (
-      <div className="SignupForm">
-        <h1>Signup form</h1>
-        <label htmlFor="username">Username: </label>
-        <input
-          type="text"
-          name="username"
-          value={this.state.username}
-          onChange={this.handleChange}
-        />
-        <label htmlFor="password">Password: </label>
-        <input
-          type="password"
-          name="password"
-          value={this.state.password}
-          onChange={this.handleChange}
-        />
-        <label htmlFor="confirmPassword">Confirm Password: </label>
-        <input
-          type="password"
-          name="confirmPassword"
-          value={this.state.confirmPassword}
-          onChange={this.handleChange}
-        />
-        <button onClick={this.handleSubmit}>Sign up</button>
-      </div>
+      <Container>
+        <Form className="SignupForm">
+          <h1>Signup Form</h1>        
+          <FormGroup> 
+            <Label for="username">Username: </Label>
+            <Input
+              type="text"
+              name="username"
+              value={this.state.username}
+              onChange={this.handleChange}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="password">Password: </Label>
+            <Input
+              type="password"
+              name="password"
+              value={this.state.password}
+              onChange={this.handleChange}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Button onClick={this.handleSubmit}>Sign Up</Button>
+          </FormGroup>
+        </Form>
+      </Container>
     );
   }
 }
