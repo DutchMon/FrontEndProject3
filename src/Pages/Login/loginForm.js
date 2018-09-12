@@ -67,10 +67,3 @@ class loginForm extends Component {
 }
 
 export default loginForm;
-
-
-
-Collapse 
-Message Input
-
-Message anuhya, Greg, Kevin
