@@ -29,6 +29,12 @@ class loginForm extends Component {
       redirectTo: "/"
     });
   }
+  handleSubmit2(event) {
+    event.preventDefault();
+    this.setState({
+      redirectTo: "/signup"
+    });
+  }
 
   render() {
     if (this.state.redirectTo) {
@@ -58,6 +64,7 @@ class loginForm extends Component {
             </FormGroup>
             <FormGroup>
             <Button onClick={this.handleSubmit}>Login</Button>
+            <Button onClick={this.handleSubmit2}>Login</Button>
           </FormGroup>
         </Form>
         </Container>
