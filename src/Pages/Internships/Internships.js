@@ -224,7 +224,7 @@ export default class Example extends React.Component {
         {this.state.saved.length ? 
         (
           <Container className="jobsTable">
-        <Table className="ml-2 mr-2">
+        <Table className="ml-2 mr-2 textColor">
           <thead>
             <tr>
               <th>Title</th>
@@ -257,7 +257,7 @@ export default class Example extends React.Component {
         {this.state.searchResults.length? 
         (
         <Container className="jobsTable">
-        <Table className="ml-2 mr-2">
+        <Table className="ml-2 mr-2 textColor">
           <thead>
             <tr>
               <th>Job ID</th>
