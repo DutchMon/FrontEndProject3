@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
-import {Button, Form, FormGroup, Label, Input, Container} from "reactstrap";
+import {Button, Form, FormGroup, Label, Input, Container, Link} from "reactstrap";
 import "./style.css";
 class loginForm extends Component {
   constructor() {
@@ -64,7 +64,9 @@ class loginForm extends Component {
             </FormGroup>
             <FormGroup>
             <Button onClick={this.handleSubmit}>Login</Button>
-            <Button onClick={this.handleSubmit2}>Login</Button>
+            <Link to="/signup">
+              <Button>Sign Up</Button>
+            </Link>
           </FormGroup>
         </Form>
         </Container>
