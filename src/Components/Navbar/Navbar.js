@@ -43,6 +43,9 @@ class Header extends Component {
     }
     return (
       <div>
+        <div className="introImage">
+          <img className="studentHubGif" src="/studenthubhead.gif" alt="#StudentHub"/>
+        </div>
         <Navbar color="dark" dark expand="md">
           <NavbarBrand>
             <Link to="/home">

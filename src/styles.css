@@ -1,3 +1,59 @@
 body {
-    background: rgb(27, 29, 28)
+  background: rgb(27, 29, 28);
+}
+
+.jumbotron {
+  background: #99986a;
+}
+
+.introImage {
+  -webkit-animation: seconds 1s forwards;
+  -webkit-animation-iteration-count: 1;
+  -webkit-animation-delay: 10s;
+  animation: seconds 1s forwards;
+  animation-iteration-count: 1;
+  animation-delay: 10s;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: black;
+  z-index: 99;
+}
+@-webkit-keyframes seconds {
+  0% {
+    opacity: 1;
   }
+  100% {
+    opacity: 0;
+    left: -9999px;
+  }
+}
+@keyframes seconds {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.studentHubGif {
+  width: 80%;
+  height: auto;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+nav {
+  z-index: 1;
+}
+
+.home {
+  visibility: hidden;
+}
