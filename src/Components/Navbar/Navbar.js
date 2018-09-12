@@ -1,35 +1,45 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Navbar.css";
 
 // Depending on the current path, this component sets the "active" class on the appropriate navigation link item
 const Navbar = props => {
   let Greeting;
-  if (props.user === null) {
-    Greeting = <p>Hello Guest!</p>;
-  } else if (props.user.firstName) {
+  if (props.loggedIn) {
     Greeting = (
       <p>
-        Welcome back, <strong>{props.user.firstName}</strong>
+        Welcome back, <strong>{props.user[0].username}</strong>
       </p>
     );
-  } else if (props.user.local.username) {
-    Greeting = (
-      <p>
-        Welcome back, <strong>{props.user.local.username}</strong>
-      </p>
+
+    return (
+      <nav>
+        <h1 className="text-center">
+          <Link to="/home">#StudentHub</Link>
+          <span className="float-right">
+            <Link to="/#" onClick={props._logout}>
+              <button className="btn btn-danger">Log Out</button>
+            </Link>
+          </span>
+          <span className="float-right mr-3">{Greeting}</span>
+        </h1>
+      </nav>
+    );
+  } else {
+    Greeting = <p>Hello Guest!</p>;
+    return (
+      <nav>
+        <h1 className="text-center">
+          <Link to="/home">#StudentHub</Link>
+          <span className="float-right">
+            <Link to="/login">
+              <button className="btn btn-danger">Log In</button>
+            </Link>
+          </span>
+          <span className="float-right mr-3">{Greeting}</span>
+        </h1>
+      </nav>
     );
   }
-  return (
-    <nav>
-      <h1 className="text-center">
-        #StudentHub
-        <span className="float-right">
-          <Greeting />
-          <button className="btn btn-danger">Login</button>
-        </span>
-      </h1>
-    </nav>
-  );
 };
-
 export default Navbar;

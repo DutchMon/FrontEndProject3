@@ -45,18 +45,18 @@ export default class Example extends React.Component {
 
   componentDidMount = () => {
     this.getJobCategories();
-    // let adzunaCategories = [];
-    // API.getAdzunaJobCategories()
-    //   .then(res => {
-    //     res.data.results.forEach((elem) => {
-    //       adzunaCategories.push(elem.label);
-    //     });
-    //     this.setState({
-    //       categories: this.state.categories.concat(adzunaCategories)
-    //     })
-    //   }
-    //   )
-    //   .catch(err => console.log(err));
+    let adzunaCategories = [];
+    API.getAdzunaJobCategories()
+      .then(res => {
+        res.data.results.forEach((elem) => {
+          adzunaCategories.push(elem.label);
+        });
+        this.setState({
+          categories: this.state.categories.concat(adzunaCategories)
+        })
+      }
+      )
+      .catch(err => console.log(err));
   }
 
   handleInputChange = e => {
