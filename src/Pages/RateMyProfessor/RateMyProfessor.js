@@ -86,7 +86,7 @@ class RateMyProfessor extends Component {
                     <Label htmlFor="university">Enter your University</Label>
                     <Input
                       onChange={this.handleInputChange}
-                      name="universtiy"
+                      name="university"
                       value={this.state.university}
                       placeholder="University"
                     />
