@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 import axios from "axios";
 import {Button, Form, FormGroup, Label, Input, Container} from "reactstrap";
 import {Link} from "react-router-dom";
-
+import "./style.css"
 
 class signUpForm extends Component {
   constructor() {
@@ -51,7 +51,7 @@ class signUpForm extends Component {
     return (
       <Container>
         <Form className="SignupForm">
-          <h1>Signup Form</h1>        
+          <h1 className="SignUpTitle">Signup Form</h1>        
           <FormGroup> 
             <Label for="username" className="textColor">Username: </Label>
             <Input
@@ -74,7 +74,7 @@ class signUpForm extends Component {
             <Button onClick={this.handleSubmit}>Sign Up</Button>
           </FormGroup>
           <FormGroup>
-            <Link to="/signup">
+            <Link to="/login">
               <Button>Login</Button>
             </Link>
             </FormGroup>
