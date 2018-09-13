@@ -36,7 +36,7 @@ class Header extends Component {
           Welcome back, <strong>{this.props.user}</strong>
         </p>
       );
-      Login = <button className="btn btn-secondary">Log Out</button>;
+      Login = <button className="btn btn-secondary" onClick="this.props._logout">Log Out</button>;
     } else {
       Greeting = <p className="greeting">Welcome Guest!</p>;
       Login = <button className="btn btn-secondary">Log In</button>;
