@@ -52,7 +52,7 @@ export default class Example extends React.Component {
   }
 
   componentDidMount = () => {
-//     this.getSavedJobs();
+    this.getSavedJobs();
     this.getJobCategories();
     let adzunaCategories = [];
     API.getAdzunaJobCategories()
@@ -84,7 +84,7 @@ export default class Example extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     this.clearResults();
-//     this.getSavedJobs();
+    this.getSavedJobs();
     this.getJobs();
     API.getAdzunaJobs(this.state.job, this.state.country, this.state.city)
       .then(res => {
@@ -229,35 +229,35 @@ export default class Example extends React.Component {
         <br />
         
       
-//         <h3>Saved Jobs</h3>
-//         {this.state.saved.length ? 
-//         (<Table className="ml-2 mr-2 textColor">
-//           <thead>
-//             <tr>
-//               <th>Title</th>
-//               <th>Application Link</th>
-//               <th>Post Date</th>
-//               <th>Remove Job</th>
-//             </tr>
-//           </thead>
-//           <tbody>
+        <h3>Saved Jobs</h3>
+        {this.state.saved.length ? 
+        (<Table className="ml-2 mr-2 textColor">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>Application Link</th>
+              <th>Post Date</th>
+              <th>Remove Job</th>
+            </tr>
+          </thead>
+          <tbody>
         
-//             {
-//               this.state.saved.map((elem) => 
-//               <tr key={elem._id} id={elem._id}>
-//               <td>{elem.title}</td>
-//               <td><a href={elem.link} alt="Job link">{elem.link}</a></td>
-//               <td><Moment format="YYYY/MM/DD" date={elem.date} /></td>
-//               <td><Button type="text" name="removeid" value={elem._id} onClick={this.remove}>Remove</Button></td>
-//               </tr>
-//               ) 
-//             }
-//           </tbody>
-//         </Table>
-//           ): <Alert>No saved jobs</Alert>
-//         }
+            {
+              this.state.saved.map((elem) => 
+              <tr key={elem._id} id={elem._id}>
+              <td>{elem.title}</td>
+              <td><a href={elem.link} alt="Job link">{elem.link}</a></td>
+              <td><Moment format="YYYY/MM/DD" date={elem.date} /></td>
+              <td><Button type="text" name="removeid" value={elem._id} onClick={this.remove}>Remove</Button></td>
+              </tr>
+              ) 
+            }
+          </tbody>
+        </Table>
+          ): <Alert>No saved jobs</Alert>
+        }
         
-//         <br/><br/>
+        <br/><br/>
 
         <h3>Search Results</h3>
         {this.state.searchResults.length? 
