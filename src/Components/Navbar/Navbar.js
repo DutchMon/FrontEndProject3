@@ -13,7 +13,6 @@ import "./Navbar.css";
 // Depending on the current path, this component sets the "active" class on the appropriate navigation link item
 class Header extends Component {
   constructor(props) {
-    console.log(props);
     super(props);
 
     this.toggle = this.toggle.bind(this);
@@ -47,11 +46,9 @@ class Header extends Component {
           <img className="studentHubGif" src="/studenthubhead.gif" alt="#StudentHub"/>
         </div>
         <Navbar color="dark" dark expand="md">
-          <NavbarBrand>
             <Link to="/home">
               <img className="headerImage" src="/studenthubhead.gif" alt="#studentHUB" />
             </Link>
-          </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
